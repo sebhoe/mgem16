@@ -21,14 +21,33 @@ System.register(['angular2/core'], function(exports_1, context_1) {
             FavoriteComponent = (function () {
                 function FavoriteComponent() {
                     this.isFavorite = false;
+                    this.change = new core_1.EventEmitter();
                 }
                 FavoriteComponent.prototype.onClick = function () {
                     this.isFavorite = !this.isFavorite;
+                    this.change.emit({
+                        id: this.object.id,
+                        name: this.object.name,
+                        newValue: this.isFavorite
+                    });
                 };
+                __decorate([
+                    core_1.Input(), 
+                    __metadata('design:type', Object)
+                ], FavoriteComponent.prototype, "isFavorite", void 0);
+                __decorate([
+                    core_1.Input(), 
+                    __metadata('design:type', Object)
+                ], FavoriteComponent.prototype, "object", void 0);
+                __decorate([
+                    core_1.Output(), 
+                    __metadata('design:type', Object)
+                ], FavoriteComponent.prototype, "change", void 0);
                 FavoriteComponent = __decorate([
                     core_1.Component({
                         selector: 'favorite',
-                        template: "\n        <i \n            class=\"glyphicon\"\n            [class.glyphicon-star]=\"isFavorite\"\n            [class.glyphicon-star-empty]=\"!isFavorite\"\n            (click)=\"onClick()\"\n            >\n        </i>\n    "
+                        template: "\n        <i \n            class=\"glyphicon fa-2x\"\n            [ngClass]=\"{\n                'glyphicon-star': isFavorite,\n                'glyphicon-star-empty': !isFavorite\n            }\"\n            (click)=\"onClick()\"\n            >\n        </i>\n    ",
+                        styles: ["\n        .glyphicon-star, .glyphicon-star-empty {\n            color: goldenrod;\n            cursor: pointer;\n        }\n        "]
                     }), 
                     __metadata('design:paramtypes', [])
                 ], FavoriteComponent);

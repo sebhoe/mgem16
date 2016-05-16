@@ -1,4 +1,4 @@
-System.register(['angular2/core', './players.component', './team.component'], function(exports_1, context_1) {
+System.register(['angular2/core'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,38 +10,29 @@ System.register(['angular2/core', './players.component', './team.component'], fu
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, players_component_1, team_component_1;
-    var AppComponent;
+    var core_1;
+    var TeamComponent;
     return {
         setters:[
             function (core_1_1) {
                 core_1 = core_1_1;
-            },
-            function (players_component_1_1) {
-                players_component_1 = players_component_1_1;
-            },
-            function (team_component_1_1) {
-                team_component_1 = team_component_1_1;
             }],
         execute: function() {
-            AppComponent = (function () {
-                function AppComponent() {
-                    this.title = 'Most Goal Europameisterschaft 2016';
-                    this.viewMode = 'players';
+            TeamComponent = (function () {
+                function TeamComponent() {
+                    this.players = [];
                 }
-                AppComponent = __decorate([
+                TeamComponent = __decorate([
                     core_1.Component({
-                        selector: 'my-app',
-                        templateUrl: 'app/app.template.html',
-                        styleUrls: ['app/app.style.css'],
-                        directives: [players_component_1.PlayersComponent, team_component_1.TeamComponent]
+                        selector: 'team',
+                        template: "\n        <h3>Team</h3>\n        <div *ngIf=\"players.length > 0\">\n            Hier kommt dein Team hin.\n            liste\n            ngFor\n        </div>\n        <div *ngIf=\"players.length == 0\">\n            Du hast noch keine Spieler f\u00FCr dein Team ausgew\u00E4hlt.\n        </div>\n    "
                     }), 
                     __metadata('design:paramtypes', [])
-                ], AppComponent);
-                return AppComponent;
+                ], TeamComponent);
+                return TeamComponent;
             }());
-            exports_1("AppComponent", AppComponent);
+            exports_1("TeamComponent", TeamComponent);
         }
     }
 });
-//# sourceMappingURL=app.component.js.map
+//# sourceMappingURL=team.component.js.map

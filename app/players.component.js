@@ -30,10 +30,13 @@ System.register(['angular2/core', './favorite.component', './players.service'], 
                     this.description = "Hier kommt die Spielerliste hin";
                     this.players = playerService.getPlayers();
                 }
+                PlayersComponent.prototype.onFavoriteChange = function ($event) {
+                    console.log($event);
+                };
                 PlayersComponent = __decorate([
                     core_1.Component({
                         selector: 'players',
-                        template: "\n            <h2>{{title}}</h2>\n            <h3>{{description}}</h3>\n            <ul>\n              <li *ngFor=\"#player of players\">\n              <favorite></favorite> {{ player }}\n              </li>\n            </ul>  \n            ",
+                        template: "\n            <h3>{{title}}</h3>\n            <span>{{description}}</span>\n            <ul>\n              <li *ngFor=\"#player of players\">\n              \n              <div class=\"media\">\n                <a href=\"#\">\n                <div class=\"media-left media-middle\">\n                    <favorite \n                        [object]=\"player\"\n                        [isFavorite]=\"player.isFavorite\" \n                        (change)=\"onFavoriteChange($event)\">\n                    </favorite>\n                </div>\n                <div class=\"media-left media-middle\">\n                    <img class=\"media-object\" \n                        src=\"http://lorempixel.com/50/50/cats/?v={{player.id}}\" \n                        alt=\"{{player.id}} - {{player.name}}\">\n                </div> \n                <div class=\"media-body\">\n                    <h4 class=\"media-heading\">{{player.name}}</h4>\n                    <span>weitere Infos...</span>\n                </div>\n                </a>\n              </div>\n              \n              </li>\n            </ul>  \n            ",
                         directives: [favorite_component_1.FavoriteComponent],
                         providers: [players_service_1.PlayersService]
                     }), 

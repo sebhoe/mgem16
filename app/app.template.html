@@ -1,0 +1,17 @@
+<h1>{{title}}</h1>
+<ul class="nav nav-pills">
+    <li [class.active]="viewMode == 'players'">
+        <a (click)="viewMode ='players'">Spieler</a>
+    </li>
+    <li [class.active]="viewMode == 'team'">
+        <a (click)="viewMode ='team'">Team</a>
+    </li>
+</ul>
+<div [ngSwitch]="viewMode">
+    <template [ngSwitchWhen]="'players'" ngSwitchDefault>
+        <players></players>
+    </template>
+    <template [ngSwitchWhen]="'team'">
+        <team></team>
+    </template>
+</div>
