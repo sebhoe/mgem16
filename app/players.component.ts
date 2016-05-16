@@ -1,6 +1,6 @@
 import {Component} from 'angular2/core'
 import {FavoriteComponent} from './favorite.component'
-
+import {BootstrapMedia} from './bootstrap.media.component'
 import {PlayersService} from './players.service'
 
 @Component({
@@ -10,32 +10,23 @@ import {PlayersService} from './players.service'
             <span>{{description}}</span>
             <ul>
               <li *ngFor="#player of players">
-              
-              <div class="media">
-                <a href="#">
-                <div class="media-left media-middle">
+                <bs-media>
                     <favorite 
+                        class="icon"
                         [object]="player"
                         [isFavorite]="player.isFavorite" 
                         (change)="onFavoriteChange($event)">
                     </favorite>
-                </div>
-                <div class="media-left media-middle">
-                    <img class="media-object" 
+                    <img class="media-object image" 
                         src="http://lorempixel.com/50/50/cats/?v={{player.id}}" 
                         alt="{{player.id}} - {{player.name}}">
-                </div> 
-                <div class="media-body">
-                    <h4 class="media-heading">{{player.name}}</h4>
-                    <span>weitere Infos...</span>
-                </div>
-                </a>
-              </div>
-              
+                    <div class="heading">{{player.name}}</div>
+                    <div class="info">weitere Infos...</div>
+                </bs-media>
               </li>
             </ul>  
             `,
-    directives: [FavoriteComponent],
+    directives: [FavoriteComponent, BootstrapMedia],
     providers: [PlayersService]
 })
 export class PlayersComponent {
