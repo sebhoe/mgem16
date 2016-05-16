@@ -1,13 +1,17 @@
-import {Component} from 'angular2/core'
-import {FavoriteComponent} from './favorite.component'
-import {BootstrapMedia} from './bootstrap.media.component'
-import {PlayersService} from './players.service'
+import {Component} from 'angular2/core';
+import {FavoriteComponent} from './favorite.component';
+import {BootstrapMedia} from './bootstrap.media.component';
+
+import {PlayersService} from './players.service';
+import {HTTP_PROVIDERS} from 'angular2/http';
+import {OnInit} from 'angular2/core';
 
 @Component({
     selector: 'players',
     template: `
             <h3>{{title}}</h3>
             <span>{{description}}</span>
+            <div *ngIf="isLoading">Spielerliste wird geladen ...</div>
             <ul>
               <li *ngFor="#player of players">
                 <bs-media>
@@ -27,15 +31,26 @@ import {PlayersService} from './players.service'
             </ul>  
             `,
     directives: [FavoriteComponent, BootstrapMedia],
-    providers: [PlayersService]
+    providers: [PlayersService, HTTP_PROVIDERS]
 })
-export class PlayersComponent {
+export class PlayersComponent implements OnInit {
     title = "Spieler";
     description = "Hier kommt die Spielerliste hin";
     players;
+    isLoading = true;
     
-    constructor(playerService : PlayersService){
-        this.players = playerService.getPlayers();
+    constructor(private _playersService : PlayersService){
+
+    }
+    
+    ngOnInit(){
+        this.players = this._playersService.getPlayers();
+        
+        this._playersService.getPosts()
+            .subscribe(posts => {
+                this.isLoading = false;   
+                console.log(posts[0].id)
+            });
     }
     
     onFavoriteChange($event){
