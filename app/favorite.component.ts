@@ -1,4 +1,4 @@
-import {Component, Input, Output, EventEmitter} from 'angular2/core'
+import {Component, Input, Output, EventEmitter} from 'angular2/core';
 
 @Component({
     selector: 'favorite',
@@ -31,7 +31,14 @@ export class FavoriteComponent {
         this.change.emit({
             id: this.object.id,
             name: this.object.name,
-            newValue: this.isFavorite
+            newValue: this.isFavorite            
         });
+        
+        console.log("emit ->    id: " + this.object.id 
+                          + " name: " + this.object.name
+                      + " newValue: " + this.isFavorite);
+        
+        //=> catch this emit and save somewhere
+        // --> afterwards: if viewmode is teams, then load only favorite players!
     }
 }

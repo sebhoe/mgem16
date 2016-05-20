@@ -1,6 +1,6 @@
-import {Component} from 'angular2/core'
-import {PlayersComponent} from './players.component'
-import {TeamComponent} from './team.component'
+import {Component} from 'angular2/core';
+import {PlayersComponent} from './players.component';
+import {TeamComponent} from './team.component';
 
 @Component({
     selector: 'my-app',

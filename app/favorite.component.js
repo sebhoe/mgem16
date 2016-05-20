@@ -30,6 +30,11 @@ System.register(['angular2/core'], function(exports_1, context_1) {
                         name: this.object.name,
                         newValue: this.isFavorite
                     });
+                    console.log("emit ->    id: " + this.object.id
+                        + " name: " + this.object.name
+                        + " newValue: " + this.isFavorite);
+                    //=> catch this emit and save somewhere
+                    // --> afterwards: if viewmode is teams, then load only favorite players!
                 };
                 __decorate([
                     core_1.Input(), 

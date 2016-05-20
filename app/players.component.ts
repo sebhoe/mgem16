@@ -1,10 +1,9 @@
-import {Component} from 'angular2/core';
+import {Component, OnInit} from 'angular2/core';
 import {FavoriteComponent} from './favorite.component';
 import {BootstrapMedia} from './bootstrap.media.component';
 
 import {PlayersService} from './players.service';
 import {HTTP_PROVIDERS} from 'angular2/http';
-import {OnInit} from 'angular2/core';
 
 @Component({
     selector: 'players',
@@ -18,8 +17,7 @@ import {OnInit} from 'angular2/core';
                     <favorite 
                         class="icon"
                         [object]="player"
-                        [isFavorite]="player.isFavorite" 
-                        (change)="onFavoriteChange($event)">
+                        [isFavorite]="player.isFavorite">
                     </favorite>
                     <img class="media-object image" 
                         src="http://lorempixel.com/50/50/cats/?v={{player.id}}" 
@@ -51,9 +49,5 @@ export class PlayersComponent implements OnInit {
                 this.isLoading = false;   
                 console.log(posts[0].id)
             });
-    }
-    
-    onFavoriteChange($event){
-        console.log($event);
     }
 }

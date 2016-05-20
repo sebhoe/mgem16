@@ -1,9 +1,11 @@
-import {Component} from 'angular2/core';
+import {Component, OnInit} from 'angular2/core';
 import {PlayersService} from './players.service';
 import {HTTP_PROVIDERS} from 'angular2/http';
 
 import {FavoriteComponent} from './favorite.component';
 import {BootstrapMedia} from './bootstrap.media.component';
+
+import {FavoriteFilterPipe} from './filterpipe';
 
 @Component({
     selector: 'team',
@@ -11,17 +13,17 @@ import {BootstrapMedia} from './bootstrap.media.component';
         <h3>Team</h3>
         <div *ngIf="players.length > 0">
             Hier kommt dein Team hin.
-           
+           <br/>
            (am besten in neue componente playerlist auslagern....)
+           <br/>
            
            <ul>
               <li *ngFor="#player of players">
-                <bs-media>
+                <bs-media [hidden]="!player.isFavorite">
                     <favorite 
                         class="icon"
                         [object]="player"
-                        [isFavorite]="player.isFavorite" 
-                        (change)="onFavoriteChange($event)">
+                        [isFavorite]="player.isFavorite">
                     </favorite>
                     <img class="media-object image" 
                         src="http://lorempixel.com/50/50/cats/?v={{player.id}}" 
@@ -38,14 +40,21 @@ import {BootstrapMedia} from './bootstrap.media.component';
         </div>
     `,
     directives: [FavoriteComponent, BootstrapMedia],
+    pipes: [FavoriteFilterPipe],
     providers: [PlayersService, HTTP_PROVIDERS]
 })
-export class TeamComponent {
+export class TeamComponent implements OnInit {
     players = [];
     
     constructor(private _playersService : PlayersService){
-        this.players = _playersService.getPlayers();
+        
     }
+    
+    ngOnInit() {
+        this.players = this._playersService.getPlayers()
+                                    .filter(player => player.isFavorite);
+    }
+    
 
     // statt
     // <div *ngIf="players.length > 0">
