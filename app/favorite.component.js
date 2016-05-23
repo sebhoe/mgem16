@@ -26,12 +26,12 @@ System.register(['angular2/core'], function(exports_1, context_1) {
                 FavoriteComponent.prototype.onClick = function () {
                     this.isFavorite = !this.isFavorite;
                     this.change.emit({
-                        id: this.object.id,
-                        name: this.object.name,
+                        id: this.favObject.id,
+                        name: this.favObject.name,
                         newValue: this.isFavorite
                     });
-                    console.log("emit ->    id: " + this.object.id
-                        + " name: " + this.object.name
+                    console.log("emit ->    id: " + this.favObject.id
+                        + " name: " + this.favObject.name
                         + " newValue: " + this.isFavorite);
                     //=> catch this emit and save somewhere
                     // --> afterwards: if viewmode is teams, then load only favorite players!
@@ -43,7 +43,7 @@ System.register(['angular2/core'], function(exports_1, context_1) {
                 __decorate([
                     core_1.Input(), 
                     __metadata('design:type', Object)
-                ], FavoriteComponent.prototype, "object", void 0);
+                ], FavoriteComponent.prototype, "favObject", void 0);
                 __decorate([
                     core_1.Output(), 
                     __metadata('design:type', Object)

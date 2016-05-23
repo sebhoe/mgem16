@@ -26,10 +26,14 @@ System.register(['angular2/core', './playerlist.component'], function(exports_1,
                     this.title = "Mannschaftskader";
                     this.description = "So sieht dein Kader aus:";
                 }
+                __decorate([
+                    core_1.Input(), 
+                    __metadata('design:type', Object)
+                ], TeamlistComponent.prototype, "players", void 0);
                 TeamlistComponent = __decorate([
                     core_1.Component({
                         selector: 'teamlist',
-                        template: "\n            <h3>{{title}}</h3>\n            <span>{{description}}</span>\n            \n            <br/>\n            \n            <playerlist [showFavoritesOnly]=\"true\"></playerlist>\n    ",
+                        template: "\n            <h3>{{title}}</h3>\n            <span>{{description}}</span>\n            \n            <br/>\n            \n            <playerlist [players]=\"players\" [showFavoritesOnly]=\"true\"></playerlist>\n    ",
                         directives: [playerlist_component_1.PlayerlistComponent]
                     }), 
                     __metadata('design:paramtypes', [])

@@ -1,4 +1,4 @@
-import {Component} from 'angular2/core';
+import {Component, Input} from 'angular2/core';
 import {PlayerlistComponent} from './playerlist.component';
 
 @Component({
@@ -9,12 +9,14 @@ import {PlayerlistComponent} from './playerlist.component';
             
             <br/>
             
-            <playerlist [showFavoritesOnly]="true"></playerlist>
+            <playerlist [players]="players" [showFavoritesOnly]="true"></playerlist>
     `,
     directives: [PlayerlistComponent]
 })
 export class TeamlistComponent {
     title = "Mannschaftskader";
     description = "So sieht dein Kader aus:";
+    
+    @Input()    players;
     
 }

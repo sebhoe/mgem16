@@ -22,20 +22,20 @@ import {Component, Input, Output, EventEmitter} from 'angular2/core';
 })
 export class FavoriteComponent {
     @Input() isFavorite = false;
-    @Input() object;
+    @Input() favObject;
         
     @Output() change = new EventEmitter();
     
     onClick(){
         this.isFavorite = !this.isFavorite;
         this.change.emit({
-            id: this.object.id,
-            name: this.object.name,
+            id: this.favObject.id,
+            name: this.favObject.name,
             newValue: this.isFavorite            
         });
         
-        console.log("emit ->    id: " + this.object.id 
-                          + " name: " + this.object.name
+        console.log("emit ->    id: " + this.favObject.id 
+                          + " name: " + this.favObject.name
                       + " newValue: " + this.isFavorite);
         
         //=> catch this emit and save somewhere

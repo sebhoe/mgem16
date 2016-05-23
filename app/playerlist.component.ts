@@ -1,14 +1,11 @@
-import {Component, OnInit, Input} from 'angular2/core';
+import {Component, Input} from 'angular2/core';
 import {FavoriteComponent} from './favorite.component';
 import {BootstrapMedia} from './bootstrap.media.component';
-
-import {PlayersService} from './players.service';
-import {HTTP_PROVIDERS} from 'angular2/http';
 
 @Component({
     selector: 'playerlist',
     template: `
-            <div *ngIf="players.length = 0">
+            <div *ngIf="players.length == 0">
                 Keine Spieler ausgewählt.
             </div>
             <div *ngIf="players.length > 0">
@@ -20,7 +17,7 @@ import {HTTP_PROVIDERS} from 'angular2/http';
                     <bs-media>
                         <favorite 
                             class="icon"
-                            [object]="player"
+                            [favObject]="player"
                             [isFavorite]="player.isFavorite">
                         </favorite>
                         <img class="media-object image" 
@@ -33,40 +30,21 @@ import {HTTP_PROVIDERS} from 'angular2/http';
                 </ul>  
             </div>
             `,
-    directives: [FavoriteComponent, BootstrapMedia],
-    providers: [PlayersService, HTTP_PROVIDERS]    
+    directives: [FavoriteComponent, BootstrapMedia]   
 })
-export class PlayerlistComponent implements OnInit {
+export class PlayerlistComponent {
     @Input()    showFavoritesOnly = false;
-    isLoading = true;
-    players;
+    @Input()    players;
     
-    constructor(private _playersService : PlayersService) {
-        
+    constructor() {
+
     }
     
-    ngOnInit(){
-        
-        this.players = this._playersService.getPlayersFromJson();
-        
-        
-        this.players.subscribe(
-                players => {
-                    this.showFavoritesOnly ? 
-                        this.players = players.filter(player => player.isFavorite)
-                        :
-                        this.players = players;
-                    this.isLoading = false;   
-                    console.log("isLoading... " + JSON.stringify(players));
-                },
-                error => console.error('Error: ' + error),
-                () => console.log('Loading players from json file Completed!')
-            );
 
         
         
         //continue.....
 
 
-    }
+    
 }

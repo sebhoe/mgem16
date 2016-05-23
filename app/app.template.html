@@ -9,9 +9,9 @@
 </ul>
 <div [ngSwitch]="viewMode">
     <template [ngSwitchWhen]="'selection'" ngSwitchDefault>
-        <selectionlist></selectionlist>
+        <selectionlist [players]="players"></selectionlist>
     </template>
     <template [ngSwitchWhen]="'team'">
-        <teamlist></teamlist>
+        <teamlist [players]="players"></teamlist>
     </template>
 </div>

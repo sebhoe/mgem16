@@ -26,10 +26,14 @@ System.register(['angular2/core', './playerlist.component'], function(exports_1,
                     this.title = "Spielerliste";
                     this.description = "Wähle deine Spieler aus:";
                 }
+                __decorate([
+                    core_1.Input(), 
+                    __metadata('design:type', Object)
+                ], SelectionlistComponent.prototype, "players", void 0);
                 SelectionlistComponent = __decorate([
                     core_1.Component({
                         selector: 'selectionlist',
-                        template: "\n            <h3>{{title}}</h3>\n            <span>{{description}}</span>\n            \n            <br/>\n            \n            <playerlist></playerlist>\n    ",
+                        template: "\n            <h3>{{title}}</h3>\n            <span>{{description}}</span>\n            \n            <br/>\n            \n            <playerlist [players]=\"players\"></playerlist>\n    ",
                         directives: [playerlist_component_1.PlayerlistComponent]
                     }), 
                     __metadata('design:paramtypes', [])
