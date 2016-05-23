@@ -1,4 +1,4 @@
-System.register(['angular2/core', './selectionlist.component', './teamlist.component'], function(exports_1, context_1) {
+System.register(['angular2/core', './playerlist.component'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,38 +10,34 @@ System.register(['angular2/core', './selectionlist.component', './teamlist.compo
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, selectionlist_component_1, teamlist_component_1;
-    var AppComponent;
+    var core_1, playerlist_component_1;
+    var SelectionlistComponent;
     return {
         setters:[
             function (core_1_1) {
                 core_1 = core_1_1;
             },
-            function (selectionlist_component_1_1) {
-                selectionlist_component_1 = selectionlist_component_1_1;
-            },
-            function (teamlist_component_1_1) {
-                teamlist_component_1 = teamlist_component_1_1;
+            function (playerlist_component_1_1) {
+                playerlist_component_1 = playerlist_component_1_1;
             }],
         execute: function() {
-            AppComponent = (function () {
-                function AppComponent() {
-                    this.title = 'Most Goal Europameisterschaft 2016';
-                    this.viewMode = 'selection';
+            SelectionlistComponent = (function () {
+                function SelectionlistComponent() {
+                    this.title = "Spielerliste";
+                    this.description = "Wähle deine Spieler aus:";
                 }
-                AppComponent = __decorate([
+                SelectionlistComponent = __decorate([
                     core_1.Component({
-                        selector: 'my-app',
-                        templateUrl: 'app/app.template.html',
-                        styleUrls: ['app/app.style.css'],
-                        directives: [selectionlist_component_1.SelectionlistComponent, teamlist_component_1.TeamlistComponent]
+                        selector: 'selectionlist',
+                        template: "\n            <h3>{{title}}</h3>\n            <span>{{description}}</span>\n            \n            <br/>\n            \n            <playerlist></playerlist>\n    ",
+                        directives: [playerlist_component_1.PlayerlistComponent]
                     }), 
                     __metadata('design:paramtypes', [])
-                ], AppComponent);
-                return AppComponent;
+                ], SelectionlistComponent);
+                return SelectionlistComponent;
             }());
-            exports_1("AppComponent", AppComponent);
+            exports_1("SelectionlistComponent", SelectionlistComponent);
         }
     }
 });
-//# sourceMappingURL=app.component.js.map
+//# sourceMappingURL=selectionlist.component.js.map

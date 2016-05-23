@@ -25,21 +25,17 @@ System.register(['angular2/http', 'rxjs/add/operator/map', 'angular2/core'], fun
             PlayersService = (function () {
                 function PlayersService(_http) {
                     this._http = _http;
-                    this._url = "http://jsonplaceholder.typicode.com/posts";
+                    //    private _url = "http://jsonplaceholder.typicode.com/posts";
+                    this._url = "./app/api/playersDBfile.json";
                 }
-                PlayersService.prototype.getPlayers = function () {
-                    return [
-                        { id: 1, name: "Manuel Neuer", isFavorite: true },
-                        { id: 3, name: "Mats Hummels", isFavorite: false },
-                        { id: 7, name: "Toni Kroos", isFavorite: false },
-                        { id: 11, name: "Thomas Müller", isFavorite: true },
-                        { id: 13, name: "Mario Gomez", isFavorite: false }
-                    ];
+                PlayersService.prototype.getPlayersFromJson = function () {
+                    return this._http.get(this._url).map(function (response) { return response.json(); });
                 };
-                PlayersService.prototype.getPosts = function () {
-                    return this._http.get(this._url)
-                        .map(function (res) { return res.json(); });
-                };
+                /*  TODO: get players from DB (mongo?)
+                    getPlayers() {
+                        return [];
+                    }
+                */
                 PlayersService.prototype.createPlayer = function (player) {
                     return this._http.post(this._url, JSON.stringify(player))
                         .map(function (res) { return res.json(); });

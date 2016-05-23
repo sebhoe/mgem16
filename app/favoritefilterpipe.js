@@ -40,4 +40,4 @@ System.register(['angular2/core'], function(exports_1, context_1) {
         }
     }
 });
-//# sourceMappingURL=filterpipe.js.map
+//# sourceMappingURL=favoritefilterpipe.js.map

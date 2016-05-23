@@ -1,6 +1,7 @@
 export interface Player {
     id?: number;
     name: string;
-    imageUrl: string;
-    country: number;
+    isFavorite: boolean;
+    imageUrl?: string;
+    country?: number;
 }
