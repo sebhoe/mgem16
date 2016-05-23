@@ -8,7 +8,7 @@ import {HTTP_PROVIDERS} from 'angular2/http';
 @Component({
     selector: 'playerlist',
     template: `
-            <div *ngIf="players.length = 0">
+            <div *ngIf="players.length == 0">
                 Keine Spieler ausgewählt.
             </div>
             <div *ngIf="players.length > 0">
