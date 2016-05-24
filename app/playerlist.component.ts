@@ -8,13 +8,13 @@ import {HTTP_PROVIDERS} from 'angular2/http';
 @Component({
     selector: 'playerlist',
     template: `
+            <div *ngIf="isLoading">
+                <i class="fa fa-spinner fa-spin fa-3x"></i>
+            </div>
             <div *ngIf="players.length == 0">
                 Keine Spieler ausgewählt.
             </div>
-            <div *ngIf="players.length > 0">
-            
-                <div *ngIf="isLoading">Spielerliste wird geladen ...</div>
-            
+            <div *ngIf="players.length > 0">            
                 <ul>
                 <li *ngFor="#player of players">
                     <bs-media>
@@ -47,10 +47,8 @@ export class PlayerlistComponent implements OnInit {
     
     ngOnInit(){
         
-        this.players = this._playersService.getPlayersFromJson();
-        
-        
-        this.players.subscribe(
+        this.players = this._playersService.getPlayersFromJson()
+            .then(
                 players => {
                     this.showFavoritesOnly ? 
                         this.players = players.filter(player => player.isFavorite)
@@ -58,9 +56,9 @@ export class PlayerlistComponent implements OnInit {
                         this.players = players;
                     this.isLoading = false;   
                     console.log("isLoading... " + JSON.stringify(players));
-                },
-                error => console.error('Error: ' + error),
-                () => console.log('Loading players from json file Completed!')
+                }
+//                error => console.error('Error: ' + error),
+//                () => console.log('Loading players from json file Completed!')
             );
 
         

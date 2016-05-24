@@ -1,6 +1,7 @@
 import {Http} from 'angular2/http';
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/toPromise';
 import {Injectable} from 'angular2/core';
 import {Player} from './player';
 
@@ -13,8 +14,10 @@ export class PlayersService {
         
     }
   
-    getPlayersFromJson() : Observable<Player[]> {
-        return this._http.get(this._url).map(response => response.json());
+    getPlayersFromJson() : Promise<Player[]> {
+        return this._http.get(this._url)
+            .map(response => response.json())
+            .toPromise();
     }
 
 /*  TODO: get players from DB (mongo?)
