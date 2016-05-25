@@ -8,7 +8,7 @@ import {Player} from './player';
 @Injectable()
 export class PlayersService {
 //    private _url = "http://jsonplaceholder.typicode.com/posts";
-    private _url = "./app/api/playersDBfile.json";
+    private _url = "app/assets/api/playersDBfile.json";
     
     constructor(private _http: Http){
         

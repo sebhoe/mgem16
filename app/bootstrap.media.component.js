@@ -24,7 +24,7 @@ System.register(['angular2/core'], function(exports_1, context_1) {
                 BootstrapMedia = __decorate([
                     core_1.Component({
                         selector: 'bs-media',
-                        template: "\n        <div class=\"media\">\n            <a href=\"#\">\n            <div class=\"media-left media-middle\">\n                <ng-content select=\".icon\"></ng-content>\n            </div>\n            <div class=\"media-left media-middle\">\n                <ng-content select=\".image\"></ng-content>\n            </div> \n            <div class=\"media-body\">\n                <h4 class=\"media-heading\">\n                    <ng-content select=\".heading\"></ng-content>\n                </h4>\n                <span>\n                    <ng-content select=\".info\"></ng-content>\n                </span>\n            </div>\n            </a>\n        </div>\n    "
+                        template: "\n        <div class=\"media\">\n            <div class=\"media-left media-middle\">\n                <ng-content select=\".icon\"></ng-content>\n            </div>\n            <div class=\"media-left media-middle\">\n                <ng-content select=\".image\"></ng-content>\n            </div> \n            <div class=\"media-body\">\n                <h4 class=\"media-heading\">\n                    <ng-content select=\".heading\"></ng-content>\n                </h4>\n                <span>\n                    <ng-content select=\".info\"></ng-content>\n                </span>\n            </div>\n        </div>\n    "
                     }), 
                     __metadata('design:paramtypes', [])
                 ], BootstrapMedia);

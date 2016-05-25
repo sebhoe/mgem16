@@ -4,7 +4,6 @@ import {Component} from 'angular2/core';
     selector: 'bs-media',
     template: `
         <div class="media">
-            <a href="#">
             <div class="media-left media-middle">
                 <ng-content select=".icon"></ng-content>
             </div>
@@ -19,7 +18,6 @@ import {Component} from 'angular2/core';
                     <ng-content select=".info"></ng-content>
                 </span>
             </div>
-            </a>
         </div>
     `
 })

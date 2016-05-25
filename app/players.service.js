@@ -27,7 +27,7 @@ System.register(['angular2/http', 'rxjs/add/operator/map', 'rxjs/add/operator/to
                 function PlayersService(_http) {
                     this._http = _http;
                     //    private _url = "http://jsonplaceholder.typicode.com/posts";
-                    this._url = "./app/api/playersDBfile.json";
+                    this._url = "app/assets/api/playersDBfile.json";
                 }
                 PlayersService.prototype.getPlayersFromJson = function () {
                     return this._http.get(this._url)

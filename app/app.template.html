@@ -1,17 +1,33 @@
-<h1>{{title}}</h1>
-<ul class="nav nav-pills">
-    <li [class.active]="viewMode == 'selection'">
-        <a (click)="viewMode ='selection'">Spieler</a>
-    </li>
-    <li [class.active]="viewMode == 'team'">
-        <a (click)="viewMode ='team'">Team</a>
-    </li>
-</ul>
-<div [ngSwitch]="viewMode">
-    <template [ngSwitchWhen]="'selection'" ngSwitchDefault>
-        <selectionlist></selectionlist>
-    </template>
-    <template [ngSwitchWhen]="'team'">
-        <teamlist></teamlist>
-    </template>
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+        <span class="pull-left">
+            <img class="logo" src="app/assets/images/mgem16.png" alt="{{title}} Logo">
+        </span>
+        </div>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li class="active">
+                    <a [routerLink]="['Playerselection']">Spieler</a>
+                </li>
+                <li>
+                    <a [routerLink]="['Teamlist']">Team</a>
+                </li>
+            </ul>
+        </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+</nav>
+
+<div container class="container">
+    <h1>{{title}}</h1>
+    
+    <router-outlet></router-outlet>
 </div>

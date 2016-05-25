@@ -44,8 +44,8 @@ System.register(['angular2/core', './favorite.component', './bootstrap.media.com
                             _this.players = players.filter(function (player) { return player.isFavorite; })
                             :
                                 _this.players = players;
-                        _this.isLoading = false;
                         console.log("isLoading... " + JSON.stringify(players));
+                        _this.isLoading = false;
                     });
                     //continue.....
                 };
@@ -56,7 +56,8 @@ System.register(['angular2/core', './favorite.component', './bootstrap.media.com
                 PlayerlistComponent = __decorate([
                     core_1.Component({
                         selector: 'playerlist',
-                        template: "\n            <div *ngIf=\"isLoading\">\n                <i class=\"fa fa-spinner fa-spin fa-3x\"></i>\n            </div>\n            <div *ngIf=\"players.length == 0\">\n                Keine Spieler ausgew\u00E4hlt.\n            </div>\n            <div *ngIf=\"players.length > 0\">            \n                <ul>\n                <li *ngFor=\"#player of players\">\n                    <bs-media>\n                        <favorite \n                            class=\"icon\"\n                            [object]=\"player\"\n                            [isFavorite]=\"player.isFavorite\">\n                        </favorite>\n                        <img class=\"media-object image\" \n                            src=\"http://lorempixel.com/50/50/cats/?v={{player.id}}\" \n                            alt=\"{{player.id}} - {{player.name}}\">\n                        <div class=\"heading\">{{player.name}}</div>\n                        <div class=\"info\">weitere Infos...</div>\n                    </bs-media>\n                </li>\n                </ul>  \n            </div>\n            ",
+                        template: "\n            <i *ngIf=\"isLoading\" class=\"fa fa-spinner fa-spin fa-3x\"></i>\n            <div *ngIf=\"players.length == 0\">\n                Keine Spieler ausgew\u00E4hlt.\n            </div>\n            <div *ngIf=\"players.length > 0\">            \n                <ul>\n                <li *ngFor=\"#player of players\">\n                    <bs-media>\n                        <favorite \n                            class=\"icon\"\n                            [object]=\"player\"\n                            [isFavorite]=\"player.isFavorite\">\n                        </favorite>\n                        <img class=\"media-object image\" \n                            src=\"http://lorempixel.com/50/50/cats/?v={{player.id}}\" \n                            alt=\"{{player.id}} - {{player.name}}\">\n                        <div class=\"heading\">{{player.name}}</div>\n                        <div class=\"info\">weitere Infos...</div>\n                    </bs-media>\n                </li>\n                </ul>  \n            </div>\n            ",
+                        styles: ["\n                li {\n                list-style-type: none;\n                }\n            "],
                         directives: [favorite_component_1.FavoriteComponent, bootstrap_media_component_1.BootstrapMedia],
                         providers: [players_service_1.PlayersService, http_1.HTTP_PROVIDERS]
                     }), 
