@@ -1,4 +1,4 @@
-System.register(['angular2/core', 'angular2/router', './selectionlist.component', './teamlist.component'], function(exports_1, context_1) {
+System.register(['angular2/core', 'angular2/router', './playerlist.component', './teamlist.component'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,7 +10,7 @@ System.register(['angular2/core', 'angular2/router', './selectionlist.component'
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, router_1, selectionlist_component_1, teamlist_component_1;
+    var core_1, router_1, playerlist_component_1, teamlist_component_1;
     var AppComponent;
     return {
         setters:[
@@ -20,8 +20,8 @@ System.register(['angular2/core', 'angular2/router', './selectionlist.component'
             function (router_1_1) {
                 router_1 = router_1_1;
             },
-            function (selectionlist_component_1_1) {
-                selectionlist_component_1 = selectionlist_component_1_1;
+            function (playerlist_component_1_1) {
+                playerlist_component_1 = playerlist_component_1_1;
             },
             function (teamlist_component_1_1) {
                 teamlist_component_1 = teamlist_component_1_1;
@@ -33,15 +33,15 @@ System.register(['angular2/core', 'angular2/router', './selectionlist.component'
                 }
                 AppComponent = __decorate([
                     router_1.RouteConfig([
-                        { path: '/players', name: 'Playerselection', component: selectionlist_component_1.SelectionlistComponent, useAsDefault: true },
+                        { path: '/players', name: 'Playerlist', component: playerlist_component_1.PlayerlistComponent, useAsDefault: true },
                         { path: '/team', name: 'Teamlist', component: teamlist_component_1.TeamlistComponent },
-                        { path: '/*other', name: 'Other', redirectTo: ['Playerselection'] }
+                        { path: '/*other', name: 'Other', redirectTo: ['Playerlist'] }
                     ]),
                     core_1.Component({
                         selector: 'my-app',
                         templateUrl: 'app/app.template.html',
                         styles: ["\n        .nav {\n            cursor: pointer;\n        }\n\n        div.container { \n            padding-top: 70px;  /* because of fixed navbar */ \n        }\n        \n        img.logo {\n            height: 56px;\n            width: auto;\n            margin: 3px 24px;\n        }\n    "],
-                        directives: [selectionlist_component_1.SelectionlistComponent, teamlist_component_1.TeamlistComponent, router_1.ROUTER_DIRECTIVES]
+                        directives: [playerlist_component_1.PlayerlistComponent, teamlist_component_1.TeamlistComponent, router_1.ROUTER_DIRECTIVES]
                     }), 
                     __metadata('design:paramtypes', [])
                 ], AppComponent);

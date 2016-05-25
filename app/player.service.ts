@@ -6,7 +6,7 @@ import {Injectable} from 'angular2/core';
 import {Player} from './player';
 
 @Injectable()
-export class PlayersService {
+export class PlayerService {
 //    private _url = "http://jsonplaceholder.typicode.com/posts";
     private _url = "app/assets/api/playersDBfile.json";
     
