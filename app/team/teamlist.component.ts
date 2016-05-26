@@ -1,36 +1,19 @@
-import {Component, OnInit, Input, forwardRef} from 'angular2/core';
+import {Component, OnInit, Input} from 'angular2/core';
 import {FavoriteComponent} from '../shared/favorite.component';
 import {BootstrapMedia} from '../shared/bootstrap.media.component';
-import {PlayerlistComponent} from '../players/playerlist.component';
 import {TeamService} from './team.service';
 import {Player} from '../players/player';
+import {PlayerdetailsComponent} from '../players/playerdetails.component';
 
 @Component({
     selector: 'teamlist',
-    template: `
-            <h3>{{title}}</h3>
-            <span>{{description}}</span>
-            
-            <br/>
-            
-            <i *ngIf="isLoading" class="fa fa-spinner fa-spin fa-3x"></i>
-            
-            <div *ngIf="team?.length == 0">
-                Keine Spieler ausgewählt.
-            </div>
-            
-            <div *ngIf="team?.length > 0">
-                Haha haha
-                
-                {{team | json}}
-            </div>
-            `,
+    templateUrl: './app/team/teamlist.component.html',
     styles: [`
                 li {
                     list-style-type: none;
                 }
             `],
-    directives: [FavoriteComponent, BootstrapMedia, forwardRef(() => PlayerlistComponent)],
+    directives: [FavoriteComponent, BootstrapMedia, PlayerdetailsComponent],
     providers: [TeamService]  
 })
 export class TeamlistComponent implements OnInit {
@@ -55,7 +38,12 @@ export class TeamlistComponent implements OnInit {
     }
     
     ngOnChanges() {
-        console.log("teamlist -> ngOnChanges() ... ");
+        console.log("teamlist -> ngOnChanges() ... ", this.team);
+        
+    }
+    
+    onFavoriteChange($event) {
+        console.log("teamlist -> onFavoriteChange() ... ");
         
     }
     

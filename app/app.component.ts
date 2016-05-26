@@ -1,6 +1,7 @@
 import {Component, OnInit} from 'angular2/core';
 
 import {PlayerlistComponent} from './players/playerlist.component';
+import {PlayerService} from './players/player.service';
 import {Player} from './players/player';
 import {TeamlistComponent} from './team/teamlist.component';
 //import {MatchlistComponent} from './match/matchlist.component';
@@ -23,25 +24,35 @@ import {TeamlistComponent} from './team/teamlist.component';
             margin: 3px 24px;
         }
     `],
-    directives: [PlayerlistComponent, TeamlistComponent]
+    directives: [PlayerlistComponent, TeamlistComponent],
+    providers: [PlayerService]
 })
-export class AppComponent {
-    title = 'Most Goal Europameisterschaft 2016';
-    
+export class AppComponent implements OnInit {
+    title = 'Most Goal Europameisterschaft 2016';   
     viewMode = 'playerlist';
-
+    isLoading = true;
+    players;
     team: Player[] = [];
-
-    constructor() {
-        
+    
+    constructor(private _playerService: PlayerService) {
+            
+    }
+    
+    ngOnInit() {
+        this._playerService.getPlayersFromJson()
+            .then(
+                players => {
+                    console.log("isLoading... " + JSON.stringify(players));
+                    this.players = players;
+                    this.isLoading = false;
+                }
+            ).catch(
+                error => console.error('Error on loading Players: ' + error)
+            );       
     }
     
     onTeamChange($event) {
-        console.log("onteamchange event.....");
-        
         this.team.push($event.player);
-        
-        console.log(this.team);
-        
+        console.log("onteamchange event.....", this.team);
     }
  }

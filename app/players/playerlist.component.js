@@ -1,4 +1,4 @@
-System.register(['angular2/core', '../shared/favorite.component', '../shared/bootstrap.media.component', './player.service', '../team/team.service', '../team/teamlist.component', './playerdetails.component'], function(exports_1, context_1) {
+System.register(['angular2/core', '../shared/favorite.component', '../shared/bootstrap.media.component', './playerdetails.component', '../team/team.service'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,7 +10,7 @@ System.register(['angular2/core', '../shared/favorite.component', '../shared/boo
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, favorite_component_1, bootstrap_media_component_1, player_service_1, team_service_1, teamlist_component_1, playerdetails_component_1;
+    var core_1, favorite_component_1, bootstrap_media_component_1, playerdetails_component_1, team_service_1;
     var PlayerlistComponent;
     return {
         setters:[
@@ -23,46 +23,27 @@ System.register(['angular2/core', '../shared/favorite.component', '../shared/boo
             function (bootstrap_media_component_1_1) {
                 bootstrap_media_component_1 = bootstrap_media_component_1_1;
             },
-            function (player_service_1_1) {
-                player_service_1 = player_service_1_1;
+            function (playerdetails_component_1_1) {
+                playerdetails_component_1 = playerdetails_component_1_1;
             },
             function (team_service_1_1) {
                 team_service_1 = team_service_1_1;
-            },
-            function (teamlist_component_1_1) {
-                teamlist_component_1 = teamlist_component_1_1;
-            },
-            function (playerdetails_component_1_1) {
-                playerdetails_component_1 = playerdetails_component_1_1;
             }],
         execute: function() {
             PlayerlistComponent = (function () {
-                function PlayerlistComponent(_playerService, _teamService) {
-                    this._playerService = _playerService;
+                function PlayerlistComponent(_teamService) {
                     this._teamService = _teamService;
                     this.title = "Spielerliste";
                     this.description = "Wähle deine Spieler aus:";
                     this.isLoading = true;
-                    this.players = [];
                     this.numberOfPlayersInTeam = 0;
                     this.teamChange = new core_1.EventEmitter();
                 }
-                PlayerlistComponent.prototype.ngOnInit = function () {
-                    var _this = this;
-                    this._playerService.getPlayersFromJson()
-                        .then(function (players) {
-                        console.log("isLoading... " + JSON.stringify(players));
-                        _this.players = players;
-                        _this.isLoading = false;
-                    }).catch(function (error) { return console.error('Error on loading Players: ' + error); });
-                };
                 PlayerlistComponent.prototype.onSelect = function (player) {
                     this.selectedPlayer = player;
                 };
                 PlayerlistComponent.prototype.onFavoriteChange = function ($event) {
                     console.log("id: ", $event.id, " name: ", $event.name, " isFavorite: ", $event.isFavorite);
-                    //        this.team.push($event.object);
-                    //        console.log("team: ", this.team);
                     // test if is already there -> remove, else add
                     this.numberOfPlayersInTeam = this._teamService.addToTeam($event.object);
                     console.log(this.numberOfPlayersInTeam);
@@ -72,6 +53,10 @@ System.register(['angular2/core', '../shared/favorite.component', '../shared/boo
                     });
                 };
                 __decorate([
+                    core_1.Input(), 
+                    __metadata('design:type', Object)
+                ], PlayerlistComponent.prototype, "players", void 0);
+                __decorate([
                     core_1.Output(), 
                     __metadata('design:type', Object)
                 ], PlayerlistComponent.prototype, "teamChange", void 0);
@@ -80,10 +65,10 @@ System.register(['angular2/core', '../shared/favorite.component', '../shared/boo
                         selector: 'playerlist',
                         templateUrl: './app/players/playerlist.component.html',
                         styles: ["\n                li {\n                    list-style-type: none;\n                }\n                li:hover {\n                    background-color: rgba(178, 219, 251, 0.4);\n                }\n                .selected {\n                    background-color: rgba(178, 219, 251, 0.8);\n                }\n            "],
-                        directives: [favorite_component_1.FavoriteComponent, bootstrap_media_component_1.BootstrapMedia, playerdetails_component_1.PlayerdetailsComponent, teamlist_component_1.TeamlistComponent],
-                        providers: [player_service_1.PlayerService, team_service_1.TeamService]
+                        directives: [favorite_component_1.FavoriteComponent, bootstrap_media_component_1.BootstrapMedia, playerdetails_component_1.PlayerdetailsComponent],
+                        providers: [team_service_1.TeamService]
                     }), 
-                    __metadata('design:paramtypes', [player_service_1.PlayerService, team_service_1.TeamService])
+                    __metadata('design:paramtypes', [team_service_1.TeamService])
                 ], PlayerlistComponent);
                 return PlayerlistComponent;
             }());

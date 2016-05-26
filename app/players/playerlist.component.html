@@ -1,15 +1,11 @@
 <h3>{{title}}</h3>
 <span>{{description}}</span>
 
-<br/>
-
-<i *ngIf="isLoading" class="fa fa-spinner fa-spin fa-3x"></i>
-
-<div *ngIf="players.length == 0">
+<div *ngIf="players?.length == 0">
     Keine Spieler gefunden.
 </div>
 
-<div *ngIf="players.length > 0">            
+<div *ngIf="players?.length > 0">            
     <ul>
     <li *ngFor="#player of players" 
         (click)="onSelect(player)"

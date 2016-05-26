@@ -1,4 +1,4 @@
-System.register(['angular2/core', '../shared/favorite.component', '../shared/bootstrap.media.component', '../players/playerlist.component', './team.service'], function(exports_1, context_1) {
+System.register(['angular2/core', '../shared/favorite.component', '../shared/bootstrap.media.component', './team.service', '../players/playerdetails.component'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,7 +10,7 @@ System.register(['angular2/core', '../shared/favorite.component', '../shared/boo
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, favorite_component_1, bootstrap_media_component_1, playerlist_component_1, team_service_1;
+    var core_1, favorite_component_1, bootstrap_media_component_1, team_service_1, playerdetails_component_1;
     var TeamlistComponent;
     return {
         setters:[
@@ -23,11 +23,11 @@ System.register(['angular2/core', '../shared/favorite.component', '../shared/boo
             function (bootstrap_media_component_1_1) {
                 bootstrap_media_component_1 = bootstrap_media_component_1_1;
             },
-            function (playerlist_component_1_1) {
-                playerlist_component_1 = playerlist_component_1_1;
-            },
             function (team_service_1_1) {
                 team_service_1 = team_service_1_1;
+            },
+            function (playerdetails_component_1_1) {
+                playerdetails_component_1 = playerdetails_component_1_1;
             }],
         execute: function() {
             TeamlistComponent = (function () {
@@ -43,7 +43,10 @@ System.register(['angular2/core', '../shared/favorite.component', '../shared/boo
                     //          this.isLoading = false;
                 };
                 TeamlistComponent.prototype.ngOnChanges = function () {
-                    console.log("teamlist -> ngOnChanges() ... ");
+                    console.log("teamlist -> ngOnChanges() ... ", this.team);
+                };
+                TeamlistComponent.prototype.onFavoriteChange = function ($event) {
+                    console.log("teamlist -> onFavoriteChange() ... ");
                 };
                 __decorate([
                     core_1.Input(), 
@@ -52,9 +55,9 @@ System.register(['angular2/core', '../shared/favorite.component', '../shared/boo
                 TeamlistComponent = __decorate([
                     core_1.Component({
                         selector: 'teamlist',
-                        template: "\n            <h3>{{title}}</h3>\n            <span>{{description}}</span>\n            \n            <br/>\n            \n            <i *ngIf=\"isLoading\" class=\"fa fa-spinner fa-spin fa-3x\"></i>\n            \n            <div *ngIf=\"team?.length == 0\">\n                Keine Spieler ausgew\u00E4hlt.\n            </div>\n            \n            <div *ngIf=\"team?.length > 0\">\n                Haha haha\n                \n                {{team | json}}\n            </div>\n            ",
+                        templateUrl: './app/team/teamlist.component.html',
                         styles: ["\n                li {\n                    list-style-type: none;\n                }\n            "],
-                        directives: [favorite_component_1.FavoriteComponent, bootstrap_media_component_1.BootstrapMedia, core_1.forwardRef(function () { return playerlist_component_1.PlayerlistComponent; })],
+                        directives: [favorite_component_1.FavoriteComponent, bootstrap_media_component_1.BootstrapMedia, playerdetails_component_1.PlayerdetailsComponent],
                         providers: [team_service_1.TeamService]
                     }), 
                     __metadata('design:paramtypes', [team_service_1.TeamService])

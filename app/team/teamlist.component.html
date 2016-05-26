@@ -1,0 +1,34 @@
+<h3>{{title}}</h3>
+<span>{{description}}</span>
+
+<div *ngIf="team?.length == 0">
+    Keine Spieler ausgewählt.
+</div>
+
+<div *ngIf="team?.length > 0">               
+    <ul>
+        <li *ngFor="#player of team" 
+            (click)="onSelect(player)"
+            [class.selected]="player===selectedPlayer"
+            >
+            <bs-media>
+                <favorite 
+                    class="icon"
+                    [object]="player"
+                    (favoriteChange)="onFavoriteChange($event)">
+                </favorite>
+                <img class="media-object image" 
+                    src="http://lorempixel.com/50/50/cats/?v={{player.id}}" 
+                    alt="{{player.id}} - {{player.name}}">
+                <div class="heading">{{player.name}}</div>
+                <div class="info">
+                    <span [hidden]="player===selectedPlayer">weitere Infos...</span>
+                    <playerdetails 
+                        *ngIf="player===selectedPlayer" 
+                        [player]="player">
+                    </playerdetails>
+                </div>
+            </bs-media>
+        </li>
+    </ul>
+</div>

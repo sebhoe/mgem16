@@ -32,12 +32,19 @@
 <div container class="container">
     <h1>{{title}}</h1>
     
+    <i *ngIf="isLoading" class="fa fa-spinner fa-spin fa-3x"></i>
+    
     <div [ngSwitch]="viewMode">
         <template [ngSwitchWhen]="'playerlist'" ngSwitchDefault>
-            <playerlist (teamChange)="onTeamChange($event)"></playerlist>
+            <playerlist 
+                [players]="players"
+                (teamChange)="onTeamChange($event)">
+            </playerlist>
         </template>
         <template [ngSwitchWhen]="'teamlist'">
-            <teamlist [team]="team"></teamlist>
+            <teamlist 
+                [team]="team">
+            </teamlist>
         </template>    
     </div> 
 </div>
