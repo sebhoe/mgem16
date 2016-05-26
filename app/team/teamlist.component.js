@@ -1,4 +1,4 @@
-System.register(['angular2/core', './shared/favorite.component', './shared/bootstrap.media.component', './team.service', 'angular2/http'], function(exports_1, context_1) {
+System.register(['angular2/core', '../shared/favorite.component', '../shared/bootstrap.media.component', '../players/playerlist.component', './team.service'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,7 +10,7 @@ System.register(['angular2/core', './shared/favorite.component', './shared/boots
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, favorite_component_1, bootstrap_media_component_1, team_service_1, http_1;
+    var core_1, favorite_component_1, bootstrap_media_component_1, playerlist_component_1, team_service_1;
     var TeamlistComponent;
     return {
         setters:[
@@ -23,11 +23,11 @@ System.register(['angular2/core', './shared/favorite.component', './shared/boots
             function (bootstrap_media_component_1_1) {
                 bootstrap_media_component_1 = bootstrap_media_component_1_1;
             },
+            function (playerlist_component_1_1) {
+                playerlist_component_1 = playerlist_component_1_1;
+            },
             function (team_service_1_1) {
                 team_service_1 = team_service_1_1;
-            },
-            function (http_1_1) {
-                http_1 = http_1_1;
             }],
         execute: function() {
             TeamlistComponent = (function () {
@@ -36,20 +36,26 @@ System.register(['angular2/core', './shared/favorite.component', './shared/boots
                     this.title = "Mannschaftskader";
                     this.description = "So sieht dein Kader aus:";
                     this.isLoading = true;
-                    this.team = [];
                 }
                 TeamlistComponent.prototype.ngOnInit = function () {
-                    this.team = this._teamService.getTeam();
-                    if (this.team && this.team.length == 0)
-                        this.isLoading = false;
+                    console.log(this.team);
+                    //        if(this.team && this.team.length == 0)
+                    //          this.isLoading = false;
                 };
+                TeamlistComponent.prototype.ngOnChanges = function () {
+                    console.log("teamlist -> ngOnChanges() ... ");
+                };
+                __decorate([
+                    core_1.Input(), 
+                    __metadata('design:type', Object)
+                ], TeamlistComponent.prototype, "team", void 0);
                 TeamlistComponent = __decorate([
                     core_1.Component({
                         selector: 'teamlist',
-                        template: "\n            <h3>{{title}}</h3>\n            <span>{{description}}</span>\n            \n            <br/>\n            \n            <i *ngIf=\"isLoading\" class=\"fa fa-spinner fa-spin fa-3x\"></i>\n            \n            <div *ngIf=\"team.length == 0\">\n                Keine Spieler ausgew\u00E4hlt.\n            </div>\n\n            <div *ngIf=\"team.length > 0\">            \n                <ul>\n                <li *ngFor=\"#player of team\">\n                    <bs-media>\n                        <favorite \n                            class=\"icon\"\n                            [object]=\"player\"\n                            [isFavorite]=\"player.isFavorite\">\n                        </favorite>\n                        <img class=\"media-object image\" \n                            src=\"http://lorempixel.com/50/50/cats/?v={{player.id}}\" \n                            alt=\"{{player.id}} - {{player.name}}\">\n                        <div class=\"heading\">{{player.name}}</div>\n                        <div class=\"info\">weitere Infos...</div>\n                    </bs-media>\n                </li>\n                </ul>  \n            </div>\n            ",
-                        styles: ["\n                li {\n                list-style-type: none;\n                }\n            "],
-                        directives: [favorite_component_1.FavoriteComponent, bootstrap_media_component_1.BootstrapMedia],
-                        providers: [team_service_1.TeamService, http_1.HTTP_PROVIDERS]
+                        template: "\n            <h3>{{title}}</h3>\n            <span>{{description}}</span>\n            \n            <br/>\n            \n            <i *ngIf=\"isLoading\" class=\"fa fa-spinner fa-spin fa-3x\"></i>\n            \n            <div *ngIf=\"team?.length == 0\">\n                Keine Spieler ausgew\u00E4hlt.\n            </div>\n            \n            <div *ngIf=\"team?.length > 0\">\n                Haha haha\n                \n                {{team | json}}\n            </div>\n            ",
+                        styles: ["\n                li {\n                    list-style-type: none;\n                }\n            "],
+                        directives: [favorite_component_1.FavoriteComponent, bootstrap_media_component_1.BootstrapMedia, core_1.forwardRef(function () { return playerlist_component_1.PlayerlistComponent; })],
+                        providers: [team_service_1.TeamService]
                     }), 
                     __metadata('design:paramtypes', [team_service_1.TeamService])
                 ], TeamlistComponent);

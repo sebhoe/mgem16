@@ -1,7 +1,9 @@
-import {Component, OnInit} from 'angular2/core';
+import {Component, OnInit, Output, EventEmitter} from 'angular2/core';
 import {FavoriteComponent} from '../shared/favorite.component';
 import {BootstrapMedia} from '../shared/bootstrap.media.component';
 import {PlayerService} from './player.service';
+import {TeamService} from '../team/team.service';
+import {TeamlistComponent} from '../team/teamlist.component';
 import {Player} from './player';
 import {PlayerdetailsComponent} from './playerdetails.component';
 
@@ -19,8 +21,8 @@ import {PlayerdetailsComponent} from './playerdetails.component';
                     background-color: rgba(178, 219, 251, 0.8);
                 }
             `],
-    directives: [FavoriteComponent, BootstrapMedia, PlayerdetailsComponent],
-    providers: [PlayerService]
+    directives: [FavoriteComponent, BootstrapMedia, PlayerdetailsComponent, TeamlistComponent],
+    providers: [PlayerService, TeamService]
 })
 export class PlayerlistComponent implements OnInit {
     title = "Spielerliste";
@@ -29,9 +31,13 @@ export class PlayerlistComponent implements OnInit {
     
     players: Player[] = [];
     selectedPlayer: Player;
-    selectedPlayerName: string;
     
-    constructor(private _playerService: PlayerService) { }
+    numberOfPlayersInTeam = 0;
+    @Output() teamChange = new EventEmitter();
+
+    
+    constructor(private _playerService: PlayerService,
+                private _teamService: TeamService) { }
 
     ngOnInit() {
         this._playerService.getPlayersFromJson()
@@ -49,31 +55,26 @@ export class PlayerlistComponent implements OnInit {
     onSelect(player: Player) {
         this.selectedPlayer = player;
     }
-
-     
-     onFavoriteChange($event) {
-        this.selectedPlayerName = $event.name;
-        
+    
+    onFavoriteChange($event) {       
         console.log("id: ",$event.id," name: ",$event.name," isFavorite: ",$event.isFavorite);
         
-         
-         
-/*         
-        // test if is already there -> remove, else add
-        console.log("onFavoriteChange...", $event);
-  
-        console.log("team before: ", this.team);
-        
-        
-        //besser: nur die id und isFavorite emitten
-        // dann den player holen und hinzufügen,
-        // oder entfernen, abhängig von isFavorite  
-        
-          
-        this._teamService.addToTeam({id: $event.id, name: $event.name, isFavorite: $event.isFavorite});
-        
-        console.log("team after: ", this.team);
-*/
-     }
+//        this.team.push($event.object);
+//        console.log("team: ", this.team);
 
+        // test if is already there -> remove, else add
+        
+        this.numberOfPlayersInTeam = this._teamService.addToTeam($event.object);
+        
+        console.log(this.numberOfPlayersInTeam);
+        
+        this.teamChange.emit({
+                player: $event.object,
+                addToTeam: $event.isFavorite 
+            }
+        );
+
+        
+     }
+    
 }

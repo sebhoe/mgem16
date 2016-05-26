@@ -15,14 +15,15 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
-                <li class="active">
-                    <a [routerLink]="['Playerlist']">Spieler</a>
+                <li [class.active]="viewMode == 'playerlist'">
+                    <a (click)="viewMode = 'playerlist'">Spieler</a>
                 </li>
-                <li> 
-                    Team
-                 <!--   <a [routerLink]="['Teamlist']">Team</a> -->
+                <li [class.active]="viewMode == 'teamlist'">
+                    <a (click)="viewMode = 'teamlist'">Team</a>
                 </li>
-                <li><a >Spielplan</a></li>
+                <li [class.active]="viewMode == 'matchlist'">
+                    <a (click)="viewMode = 'matchlist'">Spielplan</a>
+                </li>
             </ul>
         </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
@@ -31,5 +32,12 @@
 <div container class="container">
     <h1>{{title}}</h1>
     
-    <router-outlet></router-outlet>
+    <div [ngSwitch]="viewMode">
+        <template [ngSwitchWhen]="'playerlist'" ngSwitchDefault>
+            <playerlist (teamChange)="onTeamChange($event)"></playerlist>
+        </template>
+        <template [ngSwitchWhen]="'teamlist'">
+            <teamlist [team]="team"></teamlist>
+        </template>    
+    </div> 
 </div>

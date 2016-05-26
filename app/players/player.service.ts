@@ -25,9 +25,12 @@ export class PlayerService {
         return [];
     }
 */
-    
+  
+ 
+ /*   
     createPlayer(player: Player) {
         return this._http.post(this._url, JSON.stringify(player))
             .map(res => res.json());
     }
+*/
 }

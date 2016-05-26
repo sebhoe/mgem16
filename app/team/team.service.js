@@ -26,7 +26,7 @@ System.register(['angular2/core'], function(exports_1, context_1) {
                     return this.team;
                 };
                 TeamService.prototype.addToTeam = function (player) {
-                    this.team.push(player);
+                    return this.team.push(player);
                 };
                 TeamService.prototype.removeFromTeam = function (player) {
                     //        this.team.has(player);

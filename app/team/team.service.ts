@@ -1,5 +1,5 @@
 import {Injectable} from 'angular2/core';
-import {Player} from './players/player';
+import {Player} from '../players/player';
 
 @Injectable()
 export class TeamService {
@@ -14,7 +14,7 @@ export class TeamService {
     }
     
     addToTeam(player : Player) {
-        this.team.push(player);
+        return this.team.push(player);
     }
     
     removeFromTeam(player : Player) {

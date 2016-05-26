@@ -1,4 +1,4 @@
-System.register(['angular2/core', '../shared/favorite.component', '../shared/bootstrap.media.component', './player.service', './playerdetails.component'], function(exports_1, context_1) {
+System.register(['angular2/core', '../shared/favorite.component', '../shared/bootstrap.media.component', './player.service', '../team/team.service', '../team/teamlist.component', './playerdetails.component'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,7 +10,7 @@ System.register(['angular2/core', '../shared/favorite.component', '../shared/boo
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, favorite_component_1, bootstrap_media_component_1, player_service_1, playerdetails_component_1;
+    var core_1, favorite_component_1, bootstrap_media_component_1, player_service_1, team_service_1, teamlist_component_1, playerdetails_component_1;
     var PlayerlistComponent;
     return {
         setters:[
@@ -26,17 +26,26 @@ System.register(['angular2/core', '../shared/favorite.component', '../shared/boo
             function (player_service_1_1) {
                 player_service_1 = player_service_1_1;
             },
+            function (team_service_1_1) {
+                team_service_1 = team_service_1_1;
+            },
+            function (teamlist_component_1_1) {
+                teamlist_component_1 = teamlist_component_1_1;
+            },
             function (playerdetails_component_1_1) {
                 playerdetails_component_1 = playerdetails_component_1_1;
             }],
         execute: function() {
             PlayerlistComponent = (function () {
-                function PlayerlistComponent(_playerService) {
+                function PlayerlistComponent(_playerService, _teamService) {
                     this._playerService = _playerService;
+                    this._teamService = _teamService;
                     this.title = "Spielerliste";
                     this.description = "Wähle deine Spieler aus:";
                     this.isLoading = true;
                     this.players = [];
+                    this.numberOfPlayersInTeam = 0;
+                    this.teamChange = new core_1.EventEmitter();
                 }
                 PlayerlistComponent.prototype.ngOnInit = function () {
                     var _this = this;
@@ -51,34 +60,30 @@ System.register(['angular2/core', '../shared/favorite.component', '../shared/boo
                     this.selectedPlayer = player;
                 };
                 PlayerlistComponent.prototype.onFavoriteChange = function ($event) {
-                    this.selectedPlayerName = $event.name;
                     console.log("id: ", $event.id, " name: ", $event.name, " isFavorite: ", $event.isFavorite);
-                    /*
-                            // test if is already there -> remove, else add
-                            console.log("onFavoriteChange...", $event);
-                      
-                            console.log("team before: ", this.team);
-                            
-                            
-                            //besser: nur die id und isFavorite emitten
-                            // dann den player holen und hinzufügen,
-                            // oder entfernen, abhängig von isFavorite
-                            
-                              
-                            this._teamService.addToTeam({id: $event.id, name: $event.name, isFavorite: $event.isFavorite});
-                            
-                            console.log("team after: ", this.team);
-                    */
+                    //        this.team.push($event.object);
+                    //        console.log("team: ", this.team);
+                    // test if is already there -> remove, else add
+                    this.numberOfPlayersInTeam = this._teamService.addToTeam($event.object);
+                    console.log(this.numberOfPlayersInTeam);
+                    this.teamChange.emit({
+                        player: $event.object,
+                        addToTeam: $event.isFavorite
+                    });
                 };
+                __decorate([
+                    core_1.Output(), 
+                    __metadata('design:type', Object)
+                ], PlayerlistComponent.prototype, "teamChange", void 0);
                 PlayerlistComponent = __decorate([
                     core_1.Component({
                         selector: 'playerlist',
                         templateUrl: './app/players/playerlist.component.html',
                         styles: ["\n                li {\n                    list-style-type: none;\n                }\n                li:hover {\n                    background-color: rgba(178, 219, 251, 0.4);\n                }\n                .selected {\n                    background-color: rgba(178, 219, 251, 0.8);\n                }\n            "],
-                        directives: [favorite_component_1.FavoriteComponent, bootstrap_media_component_1.BootstrapMedia, playerdetails_component_1.PlayerdetailsComponent],
-                        providers: [player_service_1.PlayerService]
+                        directives: [favorite_component_1.FavoriteComponent, bootstrap_media_component_1.BootstrapMedia, playerdetails_component_1.PlayerdetailsComponent, teamlist_component_1.TeamlistComponent],
+                        providers: [player_service_1.PlayerService, team_service_1.TeamService]
                     }), 
-                    __metadata('design:paramtypes', [player_service_1.PlayerService])
+                    __metadata('design:paramtypes', [player_service_1.PlayerService, team_service_1.TeamService])
                 ], PlayerlistComponent);
                 return PlayerlistComponent;
             }());

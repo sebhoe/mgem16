@@ -5,7 +5,8 @@ import {Player} from './player';
     selector: 'playerdetails',
     template: `
         <div *ngIf="player">
-            {{player.id}} - {{player.name}} - {{player.isFavorite}}
+            {{player.id}} - {{player.name}}
+            <span [hidden]="!player.isFavorite"> - in meinem Team</span>
         </div>
         `
 })

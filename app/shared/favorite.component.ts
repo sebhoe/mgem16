@@ -6,8 +6,8 @@ import {Component, Input, Output, EventEmitter} from 'angular2/core';
         <i 
             class="glyphicon fa-2x"
             [ngClass]="{
-                'glyphicon-star': isFavorite,
-                'glyphicon-star-empty': !isFavorite
+                'glyphicon-star': object.isFavorite,
+                'glyphicon-star-empty': !object.isFavorite
             }"
             (click)="onClick()"
             >
@@ -21,24 +21,23 @@ import {Component, Input, Output, EventEmitter} from 'angular2/core';
         `]
 })
 export class FavoriteComponent {
-    @Input() isFavorite = false;
-    @Input() object;
+    @Input() object;    //is player object
         
     @Output('favoriteChange') change = new EventEmitter();
      
     onClick(){
-        this.isFavorite = !this.isFavorite;
+        this.object.isFavorite = !this.object.isFavorite;
         this.change.emit({
             id: this.object.id,
             name: this.object.name,
-            isFavorite: this.isFavorite            
+            isFavorite: this.object.isFavorite,
+            object: this.object          
         });
-        
+
+/*        
         console.log("emit ->    id: " + this.object.id 
                           + " name: " + this.object.name
-                      + " newValue: " + this.isFavorite);
-        
-        //=> catch this emit and save somewhere
-        // --> afterwards: if viewmode is teams, then load only favorite players!
+                    + " isFavorite: " + this.object.isFavorite);
+*/                    
     }
 }

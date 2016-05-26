@@ -33,15 +33,6 @@ System.register(['angular2/http', 'rxjs/add/operator/map', 'rxjs/add/operator/to
                         .map(function (response) { return response.json(); })
                         .toPromise();
                 };
-                /*  TODO: get players from DB (mongo?)
-                    getPlayers() {
-                        return [];
-                    }
-                */
-                PlayerService.prototype.createPlayer = function (player) {
-                    return this._http.post(this._url, JSON.stringify(player))
-                        .map(function (res) { return res.json(); });
-                };
                 PlayerService = __decorate([
                     core_1.Injectable(), 
                     __metadata('design:paramtypes', [http_1.Http])

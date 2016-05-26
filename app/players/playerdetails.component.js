@@ -28,7 +28,7 @@ System.register(['angular2/core'], function(exports_1, context_1) {
                 PlayerdetailsComponent = __decorate([
                     core_1.Component({
                         selector: 'playerdetails',
-                        template: "\n        <div *ngIf=\"player\">\n            {{player.id}} - {{player.name}} - {{player.isFavorite}}\n        </div>\n        "
+                        template: "\n        <div *ngIf=\"player\">\n            {{player.id}} - {{player.name}}\n            <span [hidden]=\"!player.isFavorite\"> - in meinem Team</span>\n        </div>\n        "
                     }), 
                     __metadata('design:paramtypes', [])
                 ], PlayerdetailsComponent);

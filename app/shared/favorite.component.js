@@ -20,38 +20,35 @@ System.register(['angular2/core'], function(exports_1, context_1) {
         execute: function() {
             FavoriteComponent = (function () {
                 function FavoriteComponent() {
-                    this.isFavorite = false;
                     this.change = new core_1.EventEmitter();
                 }
                 FavoriteComponent.prototype.onClick = function () {
-                    this.isFavorite = !this.isFavorite;
+                    this.object.isFavorite = !this.object.isFavorite;
                     this.change.emit({
                         id: this.object.id,
                         name: this.object.name,
-                        isFavorite: this.isFavorite
+                        isFavorite: this.object.isFavorite,
+                        object: this.object
                     });
-                    console.log("emit ->    id: " + this.object.id
-                        + " name: " + this.object.name
-                        + " newValue: " + this.isFavorite);
-                    //=> catch this emit and save somewhere
-                    // --> afterwards: if viewmode is teams, then load only favorite players!
+                    /*
+                            console.log("emit ->    id: " + this.object.id
+                                              + " name: " + this.object.name
+                                        + " isFavorite: " + this.object.isFavorite);
+                    */
                 };
-                __decorate([
-                    core_1.Input(), 
-                    __metadata('design:type', Object)
-                ], FavoriteComponent.prototype, "isFavorite", void 0);
                 __decorate([
                     core_1.Input(), 
                     __metadata('design:type', Object)
                 ], FavoriteComponent.prototype, "object", void 0);
                 __decorate([
+                    //is player object
                     core_1.Output('favoriteChange'), 
                     __metadata('design:type', Object)
                 ], FavoriteComponent.prototype, "change", void 0);
                 FavoriteComponent = __decorate([
                     core_1.Component({
                         selector: 'favorite',
-                        template: "\n        <i \n            class=\"glyphicon fa-2x\"\n            [ngClass]=\"{\n                'glyphicon-star': isFavorite,\n                'glyphicon-star-empty': !isFavorite\n            }\"\n            (click)=\"onClick()\"\n            >\n        </i>\n    ",
+                        template: "\n        <i \n            class=\"glyphicon fa-2x\"\n            [ngClass]=\"{\n                'glyphicon-star': object.isFavorite,\n                'glyphicon-star-empty': !object.isFavorite\n            }\"\n            (click)=\"onClick()\"\n            >\n        </i>\n    ",
                         styles: ["\n        .glyphicon-star, .glyphicon-star-empty {\n            color: goldenrod;\n            cursor: pointer;\n        }\n        "]
                     }), 
                     __metadata('design:paramtypes', [])
