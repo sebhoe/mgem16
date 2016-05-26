@@ -1,6 +1,6 @@
 import {Component, OnInit} from 'angular2/core';
-import {FavoriteComponent} from './favorite.component';
-import {BootstrapMedia} from './bootstrap.media.component';
+import {FavoriteComponent} from './shared/favorite.component';
+import {BootstrapMedia} from './shared/bootstrap.media.component';
 
 import {TeamService} from './team.service';
 import {HTTP_PROVIDERS} from 'angular2/http';
@@ -57,7 +57,9 @@ export class TeamlistComponent implements OnInit {
     }
     
     ngOnInit(){    
-        if(this.team.length == 0)
+        this.team = this._teamService.getTeam();
+        
+        if(this.team && this.team.length == 0)
             this.isLoading = false;
     }
 }

@@ -1,11 +1,24 @@
 import {Injectable} from 'angular2/core';
-import {Player} from './player';
+import {Player} from './players/player';
 
 @Injectable()
 export class TeamService {
+    team : Player[] = [];
     
-    constructor(){
+    constructor() {
         
+    }
+    
+    getTeam() {
+        return this.team;
+    }
+    
+    addToTeam(player : Player) {
+        this.team.push(player);
+    }
+    
+    removeFromTeam(player : Player) {
+//        this.team.has(player);
     }
   
 }

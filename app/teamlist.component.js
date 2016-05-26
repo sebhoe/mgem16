@@ -1,4 +1,4 @@
-System.register(['angular2/core', './favorite.component', './bootstrap.media.component', './team.service', 'angular2/http'], function(exports_1, context_1) {
+System.register(['angular2/core', './shared/favorite.component', './shared/bootstrap.media.component', './team.service', 'angular2/http'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -39,7 +39,8 @@ System.register(['angular2/core', './favorite.component', './bootstrap.media.com
                     this.team = [];
                 }
                 TeamlistComponent.prototype.ngOnInit = function () {
-                    if (this.team.length == 0)
+                    this.team = this._teamService.getTeam();
+                    if (this.team && this.team.length == 0)
                         this.isLoading = false;
                 };
                 TeamlistComponent = __decorate([

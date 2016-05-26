@@ -1,4 +1,4 @@
-System.register(['angular2/core', 'angular2/router', './playerlist.component', './teamlist.component'], function(exports_1, context_1) {
+System.register(['angular2/core', 'angular2/router', './players/playerlist.component', './players/player.service'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,7 +10,7 @@ System.register(['angular2/core', 'angular2/router', './playerlist.component', '
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, router_1, playerlist_component_1, teamlist_component_1;
+    var core_1, router_1, playerlist_component_1, player_service_1;
     var AppComponent;
     return {
         setters:[
@@ -23,27 +23,31 @@ System.register(['angular2/core', 'angular2/router', './playerlist.component', '
             function (playerlist_component_1_1) {
                 playerlist_component_1 = playerlist_component_1_1;
             },
-            function (teamlist_component_1_1) {
-                teamlist_component_1 = teamlist_component_1_1;
+            function (player_service_1_1) {
+                player_service_1 = player_service_1_1;
             }],
         execute: function() {
             AppComponent = (function () {
-                function AppComponent() {
+                function AppComponent(_playerService) {
+                    this._playerService = _playerService;
                     this.title = 'Most Goal Europameisterschaft 2016';
                 }
+                AppComponent.prototype.ngOnInit = function () {
+                };
                 AppComponent = __decorate([
                     router_1.RouteConfig([
                         { path: '/players', name: 'Playerlist', component: playerlist_component_1.PlayerlistComponent, useAsDefault: true },
-                        { path: '/team', name: 'Teamlist', component: teamlist_component_1.TeamlistComponent },
+                        //    { path: '/team', name: 'Teamlist', component: TeamlistComponent },
                         { path: '/*other', name: 'Other', redirectTo: ['Playerlist'] }
                     ]),
                     core_1.Component({
                         selector: 'my-app',
                         templateUrl: 'app/app.template.html',
                         styles: ["\n        .nav {\n            cursor: pointer;\n        }\n\n        div.container { \n            padding-top: 70px;  /* because of fixed navbar */ \n        }\n        \n        img.logo {\n            height: 56px;\n            width: auto;\n            margin: 3px 24px;\n        }\n    "],
-                        directives: [playerlist_component_1.PlayerlistComponent, teamlist_component_1.TeamlistComponent, router_1.ROUTER_DIRECTIVES]
+                        directives: [playerlist_component_1.PlayerlistComponent, router_1.ROUTER_DIRECTIVES],
+                        providers: [player_service_1.PlayerService]
                     }), 
-                    __metadata('design:paramtypes', [])
+                    __metadata('design:paramtypes', [player_service_1.PlayerService])
                 ], AppComponent);
                 return AppComponent;
             }());

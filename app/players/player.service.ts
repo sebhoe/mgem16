@@ -3,11 +3,11 @@ import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/toPromise';
 import {Injectable} from 'angular2/core';
+
 import {Player} from './player';
 
 @Injectable()
 export class PlayerService {
-//    private _url = "http://jsonplaceholder.typicode.com/posts";
     private _url = "app/assets/api/playersDBfile.json";
     
     constructor(private _http: Http){

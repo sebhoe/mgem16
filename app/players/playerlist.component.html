@@ -1,0 +1,41 @@
+<h3>{{title}}</h3>
+<span>{{description}}</span>
+
+<br/>
+
+<i *ngIf="isLoading" class="fa fa-spinner fa-spin fa-3x"></i>
+
+<div *ngIf="players.length == 0">
+    Keine Spieler ausgewählt.
+</div>
+
+
+
+<div *ngIf="players.length > 0">            
+    <ul>
+    <li *ngFor="#player of players" 
+        (click)="onSelect(player)"
+        [class.selected]="player===selectedPlayer"
+        >
+        <bs-media>
+            <favorite 
+                class="icon"
+                [object]="player"
+                [isFavorite]="player.isFavorite"
+                (favoriteChange)="onFavoriteChange($event)">
+            </favorite>
+            <img class="media-object image" 
+                src="http://lorempixel.com/50/50/cats/?v={{player.id}}" 
+                alt="{{player.id}} - {{player.name}}">
+            <div class="heading">{{player.name}}</div>
+            <div class="info">
+                <span [hidden]="player===selectedPlayer">weitere Infos...</span>
+                <playerdetails 
+                    *ngIf="player===selectedPlayer" 
+                    [player]="player">
+                </playerdetails>
+            </div>
+        </bs-media>
+    </li>
+    </ul>  
+</div>

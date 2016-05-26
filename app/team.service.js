@@ -20,7 +20,17 @@ System.register(['angular2/core'], function(exports_1, context_1) {
         execute: function() {
             TeamService = (function () {
                 function TeamService() {
+                    this.team = [];
                 }
+                TeamService.prototype.getTeam = function () {
+                    return this.team;
+                };
+                TeamService.prototype.addToTeam = function (player) {
+                    this.team.push(player);
+                };
+                TeamService.prototype.removeFromTeam = function (player) {
+                    //        this.team.has(player);
+                };
                 TeamService = __decorate([
                     core_1.Injectable(), 
                     __metadata('design:paramtypes', [])

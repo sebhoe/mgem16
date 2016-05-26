@@ -28,7 +28,7 @@ System.register(['angular2/core'], function(exports_1, context_1) {
                     this.change.emit({
                         id: this.object.id,
                         name: this.object.name,
-                        newValue: this.isFavorite
+                        isFavorite: this.isFavorite
                     });
                     console.log("emit ->    id: " + this.object.id
                         + " name: " + this.object.name
@@ -45,7 +45,7 @@ System.register(['angular2/core'], function(exports_1, context_1) {
                     __metadata('design:type', Object)
                 ], FavoriteComponent.prototype, "object", void 0);
                 __decorate([
-                    core_1.Output(), 
+                    core_1.Output('favoriteChange'), 
                     __metadata('design:type', Object)
                 ], FavoriteComponent.prototype, "change", void 0);
                 FavoriteComponent = __decorate([

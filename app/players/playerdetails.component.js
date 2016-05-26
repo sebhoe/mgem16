@@ -11,33 +11,31 @@ System.register(['angular2/core'], function(exports_1, context_1) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
     var core_1;
-    var FavoriteFilterPipe;
+    var PlayerdetailsComponent;
     return {
         setters:[
             function (core_1_1) {
                 core_1 = core_1_1;
             }],
         execute: function() {
-            FavoriteFilterPipe = (function () {
-                function FavoriteFilterPipe() {
+            PlayerdetailsComponent = (function () {
+                function PlayerdetailsComponent() {
                 }
-                FavoriteFilterPipe.prototype.transform = function (items, args) {
-                    // filter items array, items which match and return true will be kept, false will be filtered out
-                    //return items.filter(item => item.title.indexOf(args[0].title) !== -1);
-                    return items.filter(function (item) { return item.isFavorite; });
-                };
-                FavoriteFilterPipe = __decorate([
-                    core_1.Pipe({
-                        name: 'favoriteFilter',
-                        pure: false
-                    }),
-                    core_1.Injectable(), 
+                __decorate([
+                    core_1.Input(), 
+                    __metadata('design:type', Object)
+                ], PlayerdetailsComponent.prototype, "player", void 0);
+                PlayerdetailsComponent = __decorate([
+                    core_1.Component({
+                        selector: 'playerdetails',
+                        template: "\n        <div *ngIf=\"player\">\n            {{player.id}} - {{player.name}} - {{player.isFavorite}}\n        </div>\n        "
+                    }), 
                     __metadata('design:paramtypes', [])
-                ], FavoriteFilterPipe);
-                return FavoriteFilterPipe;
+                ], PlayerdetailsComponent);
+                return PlayerdetailsComponent;
             }());
-            exports_1("FavoriteFilterPipe", FavoriteFilterPipe);
+            exports_1("PlayerdetailsComponent", PlayerdetailsComponent);
         }
     }
 });
-//# sourceMappingURL=favoritefilterpipe.js.map
+//# sourceMappingURL=playerdetails.component.js.map

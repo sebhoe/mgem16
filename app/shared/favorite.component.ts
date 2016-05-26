@@ -24,14 +24,14 @@ export class FavoriteComponent {
     @Input() isFavorite = false;
     @Input() object;
         
-    @Output() change = new EventEmitter();
-    
+    @Output('favoriteChange') change = new EventEmitter();
+     
     onClick(){
         this.isFavorite = !this.isFavorite;
         this.change.emit({
             id: this.object.id,
             name: this.object.name,
-            newValue: this.isFavorite            
+            isFavorite: this.isFavorite            
         });
         
         console.log("emit ->    id: " + this.object.id 
