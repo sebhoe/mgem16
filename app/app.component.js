@@ -1,4 +1,4 @@
-System.register(['angular2/core', './players/playerlist.component', './players/player.service', './team/teamlist.component'], function(exports_1, context_1) {
+System.register(['angular2/core', './players/playerlist.component', './players/player.service', './team/team.service', './team/teamlist.component'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,7 +10,7 @@ System.register(['angular2/core', './players/playerlist.component', './players/p
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, playerlist_component_1, player_service_1, teamlist_component_1;
+    var core_1, playerlist_component_1, player_service_1, team_service_1, teamlist_component_1;
     var AppComponent;
     return {
         setters:[
@@ -23,18 +23,23 @@ System.register(['angular2/core', './players/playerlist.component', './players/p
             function (player_service_1_1) {
                 player_service_1 = player_service_1_1;
             },
+            function (team_service_1_1) {
+                team_service_1 = team_service_1_1;
+            },
             function (teamlist_component_1_1) {
                 teamlist_component_1 = teamlist_component_1_1;
             }],
         execute: function() {
             //import {MatchlistComponent} from './match/matchlist.component';
             AppComponent = (function () {
-                function AppComponent(_playerService) {
+                function AppComponent(_playerService, _teamService) {
                     this._playerService = _playerService;
+                    this._teamService = _teamService;
                     this.title = 'Most Goal Europameisterschaft 2016';
                     this.viewMode = 'playerlist';
                     this.isLoading = true;
                     this.team = [];
+                    this.numberOfPlayersInTeam = 0;
                 }
                 AppComponent.prototype.ngOnInit = function () {
                     var _this = this;
@@ -46,7 +51,15 @@ System.register(['angular2/core', './players/playerlist.component', './players/p
                     }).catch(function (error) { return console.error('Error on loading Players: ' + error); });
                 };
                 AppComponent.prototype.onTeamChange = function ($event) {
-                    this.team.push($event.player);
+                    console.log("app.comp.onteamchange: ", $event);
+                    if (!$event)
+                        return;
+                    $event.isFavorite ?
+                        this.numberOfPlayersInTeam = this._teamService.addToTeam($event)
+                        :
+                            this.numberOfPlayersInTeam = this._teamService.removeFromTeam($event);
+                    this.team = this._teamService.getTeam();
+                    console.log("#Players in team = ", this.numberOfPlayersInTeam);
                     console.log("onteamchange event.....", this.team);
                 };
                 AppComponent = __decorate([
@@ -55,9 +68,9 @@ System.register(['angular2/core', './players/playerlist.component', './players/p
                         templateUrl: 'app/app.template.html',
                         styles: ["\n        .nav {\n            cursor: pointer;\n        }\n\n        div.container { \n            padding-top: 70px;  /* because of fixed navbar */ \n        }\n        \n        img.logo {\n            height: 56px;\n            width: auto;\n            margin: 3px 24px;\n        }\n    "],
                         directives: [playerlist_component_1.PlayerlistComponent, teamlist_component_1.TeamlistComponent],
-                        providers: [player_service_1.PlayerService]
+                        providers: [player_service_1.PlayerService, team_service_1.TeamService]
                     }), 
-                    __metadata('design:paramtypes', [player_service_1.PlayerService])
+                    __metadata('design:paramtypes', [player_service_1.PlayerService, team_service_1.TeamService])
                 ], AppComponent);
                 return AppComponent;
             }());

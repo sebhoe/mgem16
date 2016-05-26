@@ -2,6 +2,7 @@ import {Component, OnInit} from 'angular2/core';
 
 import {PlayerlistComponent} from './players/playerlist.component';
 import {PlayerService} from './players/player.service';
+import {TeamService} from './team/team.service';
 import {Player} from './players/player';
 import {TeamlistComponent} from './team/teamlist.component';
 //import {MatchlistComponent} from './match/matchlist.component';
@@ -25,7 +26,7 @@ import {TeamlistComponent} from './team/teamlist.component';
         }
     `],
     directives: [PlayerlistComponent, TeamlistComponent],
-    providers: [PlayerService]
+    providers: [PlayerService, TeamService]
 })
 export class AppComponent implements OnInit {
     title = 'Most Goal Europameisterschaft 2016';   
@@ -33,8 +34,10 @@ export class AppComponent implements OnInit {
     isLoading = true;
     players;
     team: Player[] = [];
+    numberOfPlayersInTeam = 0;
     
-    constructor(private _playerService: PlayerService) {
+    constructor(private _playerService: PlayerService,
+                private _teamService: TeamService) {
             
     }
     
@@ -48,11 +51,21 @@ export class AppComponent implements OnInit {
                 }
             ).catch(
                 error => console.error('Error on loading Players: ' + error)
-            );       
+            );    
     }
     
     onTeamChange($event) {
-        this.team.push($event.player);
+        console.log("app.comp.onteamchange: ", $event);
+        
+        if(!$event) return;
+        $event.isFavorite ?
+            this.numberOfPlayersInTeam = this._teamService.addToTeam($event)
+            :
+            this.numberOfPlayersInTeam = this._teamService.removeFromTeam($event);
+        
+        this.team = this._teamService.getTeam();
+                
+        console.log("#Players in team = ",this.numberOfPlayersInTeam);
         console.log("onteamchange event.....", this.team);
     }
  }

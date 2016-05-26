@@ -27,17 +27,6 @@ export class FavoriteComponent {
      
     onClick(){
         this.object.isFavorite = !this.object.isFavorite;
-        this.change.emit({
-            id: this.object.id,
-            name: this.object.name,
-            isFavorite: this.object.isFavorite,
-            object: this.object          
-        });
-
-/*        
-        console.log("emit ->    id: " + this.object.id 
-                          + " name: " + this.object.name
-                    + " isFavorite: " + this.object.isFavorite);
-*/                    
+        this.change.emit(this.object);
     }
 }

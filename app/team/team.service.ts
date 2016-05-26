@@ -18,7 +18,11 @@ export class TeamService {
     }
     
     removeFromTeam(player : Player) {
-//        this.team.has(player);
+        var index: number = this.team.indexOf(player, 0);
+        if (index > -1) {
+            this.team.splice(index, 1);
+        }
+        return this.team.length;
     }
   
 }

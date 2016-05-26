@@ -36,27 +36,34 @@ System.register(['angular2/core', '../shared/favorite.component', '../shared/boo
                     this.title = "Mannschaftskader";
                     this.description = "So sieht dein Kader aus:";
                     this.isLoading = true;
+                    this.teamChange = new core_1.EventEmitter();
                 }
                 TeamlistComponent.prototype.ngOnInit = function () {
-                    console.log(this.team);
-                    //        if(this.team && this.team.length == 0)
-                    //          this.isLoading = false;
+                    console.log("teamlist.comp.oninit ... ", this.team);
                 };
                 TeamlistComponent.prototype.ngOnChanges = function () {
                     console.log("teamlist -> ngOnChanges() ... ", this.team);
                 };
                 TeamlistComponent.prototype.onFavoriteChange = function ($event) {
-                    console.log("teamlist -> onFavoriteChange() ... ");
+                    console.log("teamlist -> onFavoriteChange() ... ", $event, " name", $event.name);
+                    this.teamChange.emit($event);
+                };
+                TeamlistComponent.prototype.onSelect = function (player) {
+                    this.selectedPlayer = player;
                 };
                 __decorate([
                     core_1.Input(), 
                     __metadata('design:type', Object)
                 ], TeamlistComponent.prototype, "team", void 0);
+                __decorate([
+                    core_1.Output(), 
+                    __metadata('design:type', Object)
+                ], TeamlistComponent.prototype, "teamChange", void 0);
                 TeamlistComponent = __decorate([
                     core_1.Component({
                         selector: 'teamlist',
                         templateUrl: './app/team/teamlist.component.html',
-                        styles: ["\n                li {\n                    list-style-type: none;\n                }\n            "],
+                        styleUrls: ['./app/shared/playerlist.css'],
                         directives: [favorite_component_1.FavoriteComponent, bootstrap_media_component_1.BootstrapMedia, playerdetails_component_1.PlayerdetailsComponent],
                         providers: [team_service_1.TeamService]
                     }), 

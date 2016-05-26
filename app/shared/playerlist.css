@@ -1,0 +1,9 @@
+li {
+    list-style-type: none;
+}
+li:hover {
+    background-color: rgba(178, 219, 251, 0.4);
+}
+.selected {
+    background-color: rgba(178, 219, 251, 0.8);
+}

@@ -29,7 +29,11 @@ System.register(['angular2/core'], function(exports_1, context_1) {
                     return this.team.push(player);
                 };
                 TeamService.prototype.removeFromTeam = function (player) {
-                    //        this.team.has(player);
+                    var index = this.team.indexOf(player, 0);
+                    if (index > -1) {
+                        this.team.splice(index, 1);
+                    }
+                    return this.team.length;
                 };
                 TeamService = __decorate([
                     core_1.Injectable(), 

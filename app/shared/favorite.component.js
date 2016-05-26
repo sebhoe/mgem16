@@ -24,17 +24,7 @@ System.register(['angular2/core'], function(exports_1, context_1) {
                 }
                 FavoriteComponent.prototype.onClick = function () {
                     this.object.isFavorite = !this.object.isFavorite;
-                    this.change.emit({
-                        id: this.object.id,
-                        name: this.object.name,
-                        isFavorite: this.object.isFavorite,
-                        object: this.object
-                    });
-                    /*
-                            console.log("emit ->    id: " + this.object.id
-                                              + " name: " + this.object.name
-                                        + " isFavorite: " + this.object.isFavorite);
-                    */
+                    this.change.emit(this.object);
                 };
                 __decorate([
                     core_1.Input(), 
