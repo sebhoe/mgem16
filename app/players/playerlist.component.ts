@@ -1,4 +1,4 @@
-import {Component, Input, Output, EventEmitter} from 'angular2/core';
+import {Component, Input, Output, EventEmitter} from '@angular/core';
 import {FavoriteComponent} from '../shared/favorite.component';
 import {BootstrapMedia} from '../shared/bootstrap.media.component';
 import {Player} from './player';

@@ -1,4 +1,4 @@
-import {Component, OnInit} from 'angular2/core';
+import {Component, OnInit} from '@angular/core';
 
 import {PlayerlistComponent} from './players/playerlist.component';
 import {PlayerService} from './players/player.service';

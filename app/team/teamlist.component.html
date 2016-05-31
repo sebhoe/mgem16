@@ -7,7 +7,7 @@
 
 <div *ngIf="team?.length > 0">               
     <ul>
-        <li *ngFor="#player of team" 
+        <li *ngFor="let player of team" 
             (click)="onSelect(player)"
             [class.selected]="player===selectedPlayer"
             >

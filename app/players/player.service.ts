@@ -1,8 +1,8 @@
-import {Http} from 'angular2/http';
+import {Injectable} from '@angular/core';
+import {Http} from '@angular/http';
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/toPromise';
-import {Injectable} from 'angular2/core';
 
 import {Player} from './player';
 
