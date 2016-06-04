@@ -5,6 +5,7 @@ var port = process.env.PORT || 3000;
 var app = express();
 
 app.use('/app', express.static(path.resolve(__dirname, 'app')));
+app.use('/libs', express.static(path.resolve(__dirname, 'libs')));
 
 app.get('/*', function(req, res) {
   res.sendFile(path.resolve(__dirname, 'index.html'));
