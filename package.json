@@ -45,7 +45,8 @@
     "url": "git+https://github.com/sebhoe/mgem16.git"
   },
   "engines": {
-    "node": "6.0.0"
+    "node": "6.0.0",
+    "npm": "3.8.6"
   },
   "author": "sebhoe@freenet.de",
   "bugs": {
