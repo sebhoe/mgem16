@@ -1,5 +1,7 @@
 {
   "name": "most-goal-em2016",
+  "description": "Most Goal EM 2016",
+  "main": "systemjs.config.js",
   "version": "1.0.0",
   "scripts": {
     "start": "tsc && concurrently \"npm run tsc:w\" \"npm run lite\" ",
@@ -37,8 +39,7 @@
     "typescript": "^1.8.10",
     "typings": "^0.8.1"
   },
-  "description": "Most Goal EM 2016",
-  "main": "systemjs.config.js",
+
   "repository": {
     "type": "git",
     "url": "git+https://github.com/sebhoe/mgem16.git"
