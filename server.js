@@ -1,15 +1,14 @@
-import express = require('express');
-import path = require('path');
-var port: number = process.env.PORT || 3000;
+var express = require('express');
+var path = require('path');
+
+var port = process.env.PORT || 3000;
 var app = express();
 
 app.use('/app', express.static(path.resolve(__dirname, 'app')));
 
-var renderIndex = (req: express.Request, res: express.Response) => {
-    res.sendFile(path.resolve(__dirname, 'index.html'));
-}
-
-app.get('/*', renderIndex);
+app.get('/*', function(req, res) {
+  res.sendFile(path.resolve(__dirname, 'index.html'));
+});
 
 var server = app.listen(port, function() {
     var host = server.address().address;
