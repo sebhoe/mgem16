@@ -39,12 +39,12 @@
   },
   "description": "Most Goal EM 2016",
   "main": "systemjs.config.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/sebhoe/mgem16.git"
+  },
+  "engines": {
+    "node": "6.0.0"
   },
   "author": "sebhoe@freenet.de",
   "bugs": {
