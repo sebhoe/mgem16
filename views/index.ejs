@@ -1,0 +1,29 @@
+<html>
+  <head>
+    <base href="/">
+    <title>Most Goal EM 2016</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.6/paper/bootstrap.min.css" rel="stylesheet" integrity="sha384-2mX2PSpkRSXLQzmNzH3gwK6srb06+OfbDlYjbog8LQuALYJjuQ3+Yzy2JIWNV9rW" crossorigin="anonymous">
+    <script src="https://use.fontawesome.com/76c4918342.js"></script>
+
+    <!-- 1. Load libraries -->
+    <!-- IE required polyfills, in this exact order -->
+    <script src="/es6-shim/es6-shim.min.js"></script>
+    <script src="/zone.js/dist/zone.js"></script>
+    <script src="/reflect-metadata/Reflect.js"></script>
+    <script src="/systemjs/dist/system.src.js"></script>
+    <script src="/underscore/underscore.js"></script>
+
+    <!-- 2. Configure SystemJS -->
+    <script src="systemjs.config.js"></script>
+    <script>
+      System.import('app').catch(function(err){ console.error(err); });
+    </script>
+
+  </head>
+
+  <!-- 3. Display the application -->
+  <body>
+    <my-app>Loading...</my-app>
+  </body>
+
+</html>
